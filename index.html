@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Instant Percentage Calculator | Fast & Free Math Tool</title>
+    <meta name="title" content="Instant Percentage Calculator | Fast & Free Math Tool">
+    <meta name="description" content="Calculate percentages, discounts, and percentage changes instantly. A free, fast, and mobile-friendly percentage calculator that works offline.">
+    <meta name="keywords" content="percentage calculator, discount calculator, percentage change, math tool, free calculator online">
+    <meta name="author" content="Pro Tools">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://percentagecalculator.com/">
+    <meta property="og:title" content="Instant Percentage Calculator | Fast & Free Math Tool">
+    <meta property="og:description" content="Calculate percentages, discounts, and percentage changes instantly. Free, fast, and mobile-friendly.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://percentagecalculator.com/">
+    <meta property="twitter:title" content="Instant Percentage Calculator | Fast & Free Math Tool">
+    <meta property="twitter:description" content="Calculate percentages, discounts, and percentage changes instantly. Free, fast, and mobile-friendly.">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Instant Percentage Calculator",
+      "url": "https://percentagecalculator.com/",
+      "description": "Calculate percentages, discounts, and percentage changes instantly.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All"
+    }
+    </script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #0B0F19; /* Deep premium dark background */
+            color: #E2E8F0;
+            overflow-x: hidden;
+        }
+
+        /* Hide number input spinners for a cleaner look */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Input styling */
+        .premium-input {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .premium-input:focus {
+            border-color: rgba(96, 165, 250, 0.5); /* Blue-400 */
+            box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .premium-input::placeholder {
+            color: #64748B;
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .gradient-blue { background-image: linear-gradient(135deg, #60A5FA, #3B82F6); }
+        .gradient-green { background-image: linear-gradient(135deg, #34D399, #10B981); }
+        .gradient-purple { background-image: linear-gradient(135deg, #A78BFA, #8B5CF6); }
+
+        /* Ad placeholder min-height */
+        .ad-placeholder {
+            min-height: 250px;
+            background: rgba(0, 0, 0, 0.15);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Subtle shimmer effect for ad space to make it look active */
+        .ad-placeholder::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.02), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            100% { left: 200%; }
+        }
+
+        /* Result container animation */
+        .result-box {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen relative selection:bg-blue-500/30 selection:text-blue-200">
+
+    <!-- Decorative Ambient Background Glows -->
+    <div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-600/10 blur-[120px] pointer-events-none"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-purple-600/10 blur-[120px] pointer-events-none"></div>
+    <div class="fixed top-[40%] left-[60%] w-[30%] h-[30%] rounded-full bg-emerald-600/5 blur-[100px] pointer-events-none"></div>
+
+    <main class="relative z-10 max-w-3xl mx-auto px-4 py-12 md:py-16 space-y-10">
+        
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <div class="inline-flex items-center justify-center p-2 px-4 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-semibold tracking-wide uppercase mb-6">
+                Pro Tools
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Percentage <span class="text-gradient gradient-blue">Calculator</span></h1>
+            <p class="text-slate-400 text-lg md:text-xl font-light">Instant, reactive calculations. Designed for speed.</p>
+        </header>
+
+        <!-- Calculator 1: What is X% of Y? -->
+        <section class="glass-card rounded-3xl p-6 md:p-8 transform transition-transform hover:-translate-y-1 duration-500">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center border border-blue-500/20">
+                    <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                </div>
+                <h2 class="text-xl md:text-2xl font-semibold text-white">What is X% of Y?</h2>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row items-center gap-4 mb-8">
+                <div class="relative w-full sm:w-1/3">
+                    <input type="number" id="calc1-x" placeholder="0" class="premium-input w-full h-14 pl-4 pr-10 rounded-2xl text-xl md:text-2xl font-medium outline-none" aria-label="Percentage">
+                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 font-medium">%</span>
+                </div>
+                
+                <span class="text-lg font-medium text-slate-500">of</span>
+                
+                <div class="relative w-full sm:flex-1">
+                    <input type="number" id="calc1-y" placeholder="Value" class="premium-input w-full h-14 px-4 rounded-2xl text-xl md:text-2xl font-medium outline-none" aria-label="Value">
+                </div>
+            </div>
+            
+            <div class="result-box bg-white/5 border border-white/10 rounded-2xl p-6 mb-8 flex flex-col md:flex-row md:items-end justify-between gap-2">
+                <p class="text-slate-400 font-medium text-sm uppercase tracking-wider">Result</p>
+                <p class="text-4xl md:text-5xl font-bold text-white tracking-tight break-all">
+                    <span id="calc1-result" class="text-gradient gradient-blue">0</span>
+                </p>
+            </div>
+            
+            <!-- Ad Placeholder -->
+            <div class="ad-placeholder rounded-2xl flex flex-col items-center justify-center">
+                <span class="text-slate-600 font-medium tracking-widest text-xs uppercase letter-spacing-2">Advertisement</span>
+            </div>
+        </section>
+
+        <!-- Calculator 2: Discount Calculator -->
+        <section class="glass-card rounded-3xl p-6 md:p-8 transform transition-transform hover:-translate-y-1 duration-500">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
+                    <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <h2 class="text-xl md:text-2xl font-semibold text-white">Discount Calculator</h2>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-6 mb-8">
+                <div class="flex-1 space-y-2">
+                    <label for="calc2-price" class="block text-sm font-medium text-slate-400 ml-1">Original Price</label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-medium">$</span>
+                        <input type="number" id="calc2-price" placeholder="100.00" class="premium-input w-full h-14 pl-8 pr-4 rounded-2xl text-xl md:text-2xl font-medium outline-none">
+                    </div>
+                </div>
+                
+                <div class="flex-1 space-y-2">
+                    <label for="calc2-discount" class="block text-sm font-medium text-slate-400 ml-1">Discount</label>
+                    <div class="relative">
+                        <input type="number" id="calc2-discount" placeholder="20" class="premium-input w-full h-14 pl-4 pr-10 rounded-2xl text-xl md:text-2xl font-medium outline-none">
+                        <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 font-medium">%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="result-box bg-white/5 border border-white/10 rounded-2xl p-6 mb-8 flex flex-col md:flex-row items-start md:items-end justify-between gap-4">
+                <div>
+                    <p class="text-slate-400 font-medium text-sm uppercase tracking-wider mb-1">Final Price</p>
+                    <p class="text-4xl md:text-5xl font-bold text-white tracking-tight break-all">
+                        <span id="calc2-final" class="text-gradient gradient-green">0.00</span>
+                    </p>
+                </div>
+                <div class="md:text-right px-4 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+                    <p class="text-xs text-emerald-400 uppercase tracking-wide font-semibold">You Save</p>
+                    <p class="text-lg font-bold text-emerald-300" id="calc2-save">0.00</p>
+                </div>
+            </div>
+            
+            <!-- Ad Placeholder -->
+            <div class="ad-placeholder rounded-2xl flex flex-col items-center justify-center">
+                <span class="text-slate-600 font-medium tracking-widest text-xs uppercase letter-spacing-2">Advertisement</span>
+            </div>
+        </section>
+
+        <!-- Calculator 3: Percentage Change -->
+        <section class="glass-card rounded-3xl p-6 md:p-8 transform transition-transform hover:-translate-y-1 duration-500 mb-10">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20">
+                    <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                </div>
+                <h2 class="text-xl md:text-2xl font-semibold text-white">Percentage Change</h2>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-4 mb-8">
+                <div class="w-full md:flex-1 space-y-2">
+                    <label for="calc3-from" class="block text-sm font-medium text-slate-400 ml-1">From (Original)</label>
+                    <input type="number" id="calc3-from" placeholder="0" class="premium-input w-full h-14 px-4 rounded-2xl text-xl md:text-2xl font-medium outline-none">
+                </div>
+                
+                <div class="h-10 w-10 flex items-center justify-center rounded-full bg-white/5 border border-white/10 mt-6 hidden md:flex shrink-0">
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </div>
+                
+                <div class="w-full md:flex-1 space-y-2">
+                    <label for="calc3-to" class="block text-sm font-medium text-slate-400 ml-1">To (New)</label>
+                    <input type="number" id="calc3-to" placeholder="0" class="premium-input w-full h-14 px-4 rounded-2xl text-xl md:text-2xl font-medium outline-none">
+                </div>
+            </div>
+            
+            <div class="result-box bg-white/5 border border-white/10 rounded-2xl p-6 mb-8 flex flex-col md:flex-row items-start md:items-end justify-between gap-4">
+                <div>
+                    <p class="text-slate-400 font-medium text-sm uppercase tracking-wider mb-1">Difference</p>
+                    <div class="flex items-baseline gap-3">
+                        <p class="text-4xl md:text-5xl font-bold text-white tracking-tight break-all">
+                            <span id="calc3-result" class="text-gradient gradient-purple">0%</span> 
+                        </p>
+                        <span id="calc3-icon" class="text-2xl"></span>
+                    </div>
+                </div>
+                <div>
+                    <span id="calc3-badge" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide bg-purple-500/10 text-purple-400 border border-purple-500/20 opacity-0 transition-opacity duration-300">Change</span>
+                </div>
+            </div>
+            
+            <!-- Ad Placeholder -->
+            <div class="ad-placeholder rounded-2xl flex flex-col items-center justify-center">
+                <span class="text-slate-600 font-medium tracking-widest text-xs uppercase letter-spacing-2">Advertisement</span>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Logic -->
+    <script>
+        // Utility to format numbers cleanly (max 2 decimal places, removes trailing zeros)
+        const formatNumber = (num) => {
+            if (isNaN(num) || !isFinite(num)) return 0;
+            return parseFloat(num.toFixed(2));
+        };
+
+        // --- Calculator 1: What is X% of Y? ---
+        const calc1X = document.getElementById('calc1-x');
+        const calc1Y = document.getElementById('calc1-y');
+        const calc1Result = document.getElementById('calc1-result');
+
+        const updateCalc1 = () => {
+            const x = parseFloat(calc1X.value);
+            const y = parseFloat(calc1Y.value);
+            if (!isNaN(x) && !isNaN(y)) {
+                calc1Result.textContent = formatNumber((x / 100) * y);
+            } else {
+                calc1Result.textContent = '0';
+            }
+        };
+
+        calc1X.addEventListener('input', updateCalc1);
+        calc1Y.addEventListener('input', updateCalc1);
+
+        // --- Calculator 2: Discount Calculator ---
+        const calc2Price = document.getElementById('calc2-price');
+        const calc2Discount = document.getElementById('calc2-discount');
+        const calc2Final = document.getElementById('calc2-final');
+        const calc2Save = document.getElementById('calc2-save');
+
+        const updateCalc2 = () => {
+            const price = parseFloat(calc2Price.value);
+            const discount = parseFloat(calc2Discount.value);
+            
+            if (!isNaN(price) && !isNaN(discount)) {
+                const save = (price * discount) / 100;
+                const final = price - save;
+                calc2Final.textContent = formatNumber(final);
+                calc2Save.textContent = '$' + formatNumber(save);
+            } else if (!isNaN(price) && isNaN(discount)) {
+                calc2Final.textContent = formatNumber(price);
+                calc2Save.textContent = '$0.00';
+            } else {
+                calc2Final.textContent = '0.00';
+                calc2Save.textContent = '$0.00';
+            }
+        };
+
+        calc2Price.addEventListener('input', updateCalc2);
+        calc2Discount.addEventListener('input', updateCalc2);
+
+        // --- Calculator 3: Percentage Change ---
+        const calc3From = document.getElementById('calc3-from');
+        const calc3To = document.getElementById('calc3-to');
+        const calc3Result = document.getElementById('calc3-result');
+        const calc3Badge = document.getElementById('calc3-badge');
+        const calc3Icon = document.getElementById('calc3-icon');
+
+        const updateCalc3 = () => {
+            const from = parseFloat(calc3From.value);
+            const to = parseFloat(calc3To.value);
+            
+            if (!isNaN(from) && !isNaN(to) && from !== 0) {
+                const change = ((to - from) / from) * 100;
+                calc3Result.textContent = Math.abs(formatNumber(change)) + '%';
+                calc3Badge.style.opacity = '1';
+                
+                if (change > 0) {
+                    calc3Badge.textContent = 'Increase';
+                    calc3Badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 transition-all duration-300';
+                    calc3Result.className = 'text-gradient gradient-green';
+                    calc3Icon.innerHTML = '↗';
+                    calc3Icon.className = 'text-2xl text-emerald-400 animate-bounce';
+                } else if (change < 0) {
+                    calc3Badge.textContent = 'Decrease';
+                    calc3Badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide bg-red-500/10 text-red-400 border border-red-500/20 transition-all duration-300';
+                    calc3Result.className = 'text-gradient bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-rose-400';
+                    calc3Icon.innerHTML = '↘';
+                    calc3Icon.className = 'text-2xl text-red-400';
+                } else {
+                    calc3Badge.textContent = 'No Change';
+                    calc3Badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide bg-slate-500/10 text-slate-400 border border-slate-500/20 transition-all duration-300';
+                    calc3Result.className = 'text-gradient gradient-purple';
+                    calc3Icon.innerHTML = '';
+                }
+            } else {
+                calc3Result.textContent = '0%';
+                calc3Badge.style.opacity = '0';
+                calc3Result.className = 'text-gradient gradient-purple';
+                calc3Icon.innerHTML = '';
+            }
+        };
+
+        calc3From.addEventListener('input', updateCalc3);
+        calc3To.addEventListener('input', updateCalc3);
+    </script>
+</body>
+</html>
